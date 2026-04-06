@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b2h6n3npvpc7f"]
 
 [ext_resource type="PackedScene" uid="uid://by2mv2qowjej0" path="res://scenes/objects/agents/wanderer.tscn" id="1_m1xyh"]
+[ext_resource type="PackedScene" uid="uid://0gj7p15n4vj" path="res://scenes/objects/agents/pursuer.tscn" id="2_1dx5u"]
 
 [node name="Simulation" type="Node2D" unique_id=1252209998]
 
@@ -8,3 +9,8 @@
 
 [node name="Wanderer" parent="." unique_id=1466015041 instance=ExtResource("1_m1xyh")]
 position = Vector2(-406, -52)
+
+[node name="Pursuer" parent="." unique_id=1548938448 node_paths=PackedStringArray("_pursuitTarget") instance=ExtResource("2_1dx5u")]
+position = Vector2(332, 81)
+_pursuitTarget = NodePath("../Wanderer")
+_rotationSpeed = 90.0

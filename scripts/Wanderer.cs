@@ -18,8 +18,7 @@ public partial class Wanderer : Agent
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		if(Mathf.Sqrt((_targetPosition.X - Position.X) * (_targetPosition.X - Position.X) +
-			(_targetPosition.Y - Position.Y) * (_targetPosition.Y - Position.Y)) <= _minDistanceToTarget)
+		if(DistanceToTarget() <= _minDistanceToTarget)
 		{
 			RandomizeTargetPosition();
 		}

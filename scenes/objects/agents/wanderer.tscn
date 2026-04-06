@@ -6,5 +6,5 @@
 [node name="Wanderer" unique_id=1466015041 instance=ExtResource("1_oij7h")]
 script = ExtResource("2_f2h2r")
 _fov = 60.0
-_wanderPointDistance = 200.0
-_minDistanceToTarget = 50.0
+_wanderPointDistance = 350.0
+_minDistanceToTarget = 100.0

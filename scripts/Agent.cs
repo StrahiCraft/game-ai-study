@@ -62,6 +62,12 @@ public partial class Agent : Node2D
 		
 	}
 
+	public float DistanceToTarget()
+	{
+		return Mathf.Sqrt((_targetPosition.X - Position.X) * (_targetPosition.X - Position.X) +
+			(_targetPosition.Y - Position.Y) * (_targetPosition.Y - Position.Y));
+	}
+
 	public void SetTargetPosition(Vector2 target)
 	{
 		_targetPosition = target;
