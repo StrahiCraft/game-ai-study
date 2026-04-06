@@ -24,11 +24,16 @@ public partial class Wanderer : Agent
 		}
 	}
 
-	private void RandomizeTargetPosition()
+	protected void RandomizeTargetPosition()
+	{
+		_targetPosition = GenerateRandomTargetPosition();
+	}
+
+	protected Vector2 GenerateRandomTargetPosition()
 	{
 		RandomNumberGenerator rng = new RandomNumberGenerator();
 
-		_targetPosition = new Vector2(Mathf.Sin(Mathf.DegToRad(rng.RandfRange(RotationDegrees - _fov / 2, RotationDegrees + _fov / 2))),
+		return new Vector2(Mathf.Sin(Mathf.DegToRad(rng.RandfRange(RotationDegrees - _fov / 2, RotationDegrees + _fov / 2))),
                 Mathf.Cos(Mathf.DegToRad(rng.RandfRange(RotationDegrees - _fov / 2, RotationDegrees + _fov / 2)))) *
 				_wanderPointDistance + Position;
 	}

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dol2xkh43yi8f"]
+
+[ext_resource type="PackedScene" uid="uid://ckl6pxfs60des" path="res://scenes/objects/agents/agent.tscn" id="1_f6vwc"]
+[ext_resource type="Script" uid="uid://clv37e766dqde" path="res://scripts/Evader.cs" id="2_dybit"]
+[ext_resource type="Texture2D" uid="uid://b04qeq2jooeoq" path="res://textures/PurpleArrow.png" id="3_i53gp"]
+
+[node name="Evader" unique_id=1466015041 instance=ExtResource("1_f6vwc")]
+script = ExtResource("2_dybit")
+_evasionDistance = 500.0
+_minimumEvasionTime = 2.0
+_fov = 60.0
+_wanderPointDistance = 350.0
+_minDistanceToTarget = 100.0
+_reverseDesieredVelocity = true
+
+[node name="Sprite2D" parent="." index="0" unique_id=944062186]
+texture = ExtResource("3_i53gp")

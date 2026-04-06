@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 public partial class Agent : Node2D
 {
+	[Export] protected bool _reverseDesieredVelocity;
 	[Export] private float _maxSpeed;
 	[Export] private float _rotationSpeed;
 	
@@ -17,7 +18,17 @@ public partial class Agent : Node2D
 
 	public override void _Process(double delta)
 	{
-		Vector2 desieredVelocity = (_targetPosition - Position).Normalized();
+		Vector2 desieredVelocity;
+
+		if (_reverseDesieredVelocity)
+		{
+			desieredVelocity = (Position - _targetPosition).Normalized();
+		}
+		else
+		{
+			desieredVelocity = (_targetPosition - Position).Normalized();
+		}
+
 		Vector2 steeringVelocity = desieredVelocity - _velocity;
 
 		_velocity += steeringVelocity * Mathf.DegToRad(_rotationSpeed) * (float)delta;
