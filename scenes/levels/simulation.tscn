@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b2h6n3npvpc7f"]
 
-[ext_resource type="PackedScene" uid="uid://ckl6pxfs60des" path="res://scenes/objects/agents/agent.tscn" id="1_m1xyh"]
+[ext_resource type="PackedScene" uid="uid://by2mv2qowjej0" path="res://scenes/objects/agents/wanderer.tscn" id="1_m1xyh"]
 
 [node name="Simulation" type="Node2D" unique_id=1252209998]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=382429803]
 
-[node name="Agent" parent="." unique_id=1466015041 instance=ExtResource("1_m1xyh")]
-position = Vector2(-300, -200)
+[node name="Wanderer" parent="." unique_id=1466015041 instance=ExtResource("1_m1xyh")]
+position = Vector2(-406, -52)

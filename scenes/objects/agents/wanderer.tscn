@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://by2mv2qowjej0"]
+
+[ext_resource type="PackedScene" uid="uid://ckl6pxfs60des" path="res://scenes/objects/agents/agent.tscn" id="1_oij7h"]
+[ext_resource type="Script" uid="uid://b1xmvx25rlrt8" path="res://scripts/Wanderer.cs" id="2_f2h2r"]
+
+[node name="Wanderer" unique_id=1466015041 instance=ExtResource("1_oij7h")]
+script = ExtResource("2_f2h2r")
+_fov = 60.0
+_wanderPointDistance = 200.0
+_minDistanceToTarget = 50.0

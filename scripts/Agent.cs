@@ -7,7 +7,7 @@ public partial class Agent : Node2D
 	[Export] private float _maxSpeed;
 	[Export] private float _rotationSpeed;
 	
-	private Vector2 _targetPosition;
+	protected Vector2 _targetPosition;
 	private Vector2 _velocity;
 
     public override void _Ready()
@@ -49,7 +49,17 @@ public partial class Agent : Node2D
 			wrapedPosition.Y = -GetWindow().Size.Y / 2;
 		}
 
+		if(wrapedPosition != Position)
+		{
+			OnPositionWraped();
+		}
+
 		Position = wrapedPosition;
+	}
+
+	public virtual void OnPositionWraped()
+	{
+		
 	}
 
 	public void SetTargetPosition(Vector2 target)
@@ -61,4 +71,10 @@ public partial class Agent : Node2D
 	{
 		return _velocity;
 	}
+
+	public float GetMaxSpeed()
+	{
+		return _maxSpeed;
+	}
+
 }
