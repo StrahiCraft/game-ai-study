@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ckl6pxfs60des"]
+
+[ext_resource type="Script" uid="uid://d1v8y0831pwgs" path="res://scripts/Agent.cs" id="1_uv4c6"]
+[ext_resource type="Texture2D" uid="uid://dgxbkkb54qqup" path="res://textures/RedArrow.png" id="2_jkda1"]
+
+[node name="Agent" type="Node2D" unique_id=1466015041]
+script = ExtResource("1_uv4c6")
+_maxSpeed = 300.0
+_rotationSpeed = 60.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=944062186]
+rotation = -1.5707964
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_jkda1")
