@@ -1,8 +1,66 @@
 [gd_scene format=3 uid="uid://b2h6n3npvpc7f"]
 
+[ext_resource type="PackedScene" uid="uid://cvhpi5dm6ajfn" path="res://scenes/objects/agents/wall.tscn" id="1_1dx5u"]
 [ext_resource type="PackedScene" uid="uid://c8oobrytwe7y8" path="res://scenes/objects/agents/player/player.tscn" id="1_m1xyh"]
 
 [node name="Simulation" type="Node2D" unique_id=1252209998]
+
+[node name="Map" type="Node2D" parent="." unique_id=1973368224]
+
+[node name="BoundingWalls" type="Node2D" parent="Map" unique_id=806668845]
+
+[node name="Wall" parent="Map/BoundingWalls" unique_id=1947434868 instance=ExtResource("1_1dx5u")]
+position = Vector2(-651, 0)
+scale = Vector2(1, 36.119995)
+
+[node name="Wall3" parent="Map/BoundingWalls" unique_id=1770930783 instance=ExtResource("1_1dx5u")]
+position = Vector2(0, -370)
+scale = Vector2(66.159996, 1)
+
+[node name="Wall4" parent="Map/BoundingWalls" unique_id=1019577030 instance=ExtResource("1_1dx5u")]
+position = Vector2(0, 370)
+scale = Vector2(66.159996, 1)
+
+[node name="Wall2" parent="Map/BoundingWalls" unique_id=1602826297 instance=ExtResource("1_1dx5u")]
+position = Vector2(651, 0)
+scale = Vector2(1, 36.119995)
+
+[node name="Wall" parent="Map" unique_id=107048447 instance=ExtResource("1_1dx5u")]
+position = Vector2(-331.00003, 0)
+scale = Vector2(-20.997688, 4.493323)
+
+[node name="Wall2" parent="Map" unique_id=423061621 instance=ExtResource("1_1dx5u")]
+position = Vector2(-136.00002, -268)
+scale = Vector2(-2.78015, 9.413322)
+
+[node name="Wall3" parent="Map" unique_id=1152264463 instance=ExtResource("1_1dx5u")]
+position = Vector2(354.99994, 43.99994)
+scale = Vector2(-2.78015, 9.413322)
+
+[node name="Wall4" parent="Map" unique_id=1786502055 instance=ExtResource("1_1dx5u")]
+position = Vector2(181.00002, -187.99998)
+rotation = -0.6653057
+scale = Vector2(-2.78015, 9.413322)
+
+[node name="Wall5" parent="Map" unique_id=1367933327 instance=ExtResource("1_1dx5u")]
+position = Vector2(-39.99997, 236.00002)
+rotation = 1.7326872
+scale = Vector2(-2.78015, 9.413322)
+
+[node name="Wall6" parent="Map" unique_id=1557856979 instance=ExtResource("1_1dx5u")]
+position = Vector2(-301.00003, 221)
+rotation = 4.720224
+scale = Vector2(3.8872144, 22.560589)
+
+[node name="Wall7" parent="Map" unique_id=1579398602 instance=ExtResource("1_1dx5u")]
+position = Vector2(382.00003, 176)
+rotation = 4.720224
+scale = Vector2(5.7684093, 5.5655003)
+
+[node name="Wall8" parent="Map" unique_id=852232834 instance=ExtResource("1_1dx5u")]
+position = Vector2(140, 87)
+rotation = 4.720224
+scale = Vector2(5.7684093, 5.5655003)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=382429803]
 
