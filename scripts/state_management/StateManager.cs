@@ -38,7 +38,6 @@ public partial class StateManager : Node2D
 	{
 		if(newState is IState)
 		{
-			Debug.Print("Changing to " + newState.Name);
 			ChangeState((IState)newState);
 		}
 	}

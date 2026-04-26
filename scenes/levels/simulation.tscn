@@ -28,15 +28,32 @@ position = Vector2(651, 0)
 scale = Vector2(1, 36.119995)
 
 [node name="Wall" parent="Map" unique_id=107048447 instance=ExtResource("1_1dx5u")]
-position = Vector2(-331.00003, 0)
-scale = Vector2(-20.997688, 4.493323)
+position = Vector2(-248.00003, -83)
+rotation = 0.19916499
+scale = Vector2(-15.357687, 4.493323)
 
 [node name="Wall2" parent="Map" unique_id=423061621 instance=ExtResource("1_1dx5u")]
-position = Vector2(-136.00002, -268)
+position = Vector2(-604, -318.00006)
+rotation = 0.7938691
+scale = Vector2(-2.78015, 9.413322)
+
+[node name="Wall9" parent="Map" unique_id=455115956 instance=ExtResource("1_1dx5u")]
+position = Vector2(601, 321.99988)
+rotation = 0.7938691
+scale = Vector2(-2.78015, 9.413322)
+
+[node name="Wall10" parent="Map" unique_id=1350168800 instance=ExtResource("1_1dx5u")]
+position = Vector2(-599, 328.00003)
+rotation = 2.2474298
+scale = Vector2(-2.78015, 9.413322)
+
+[node name="Wall11" parent="Map" unique_id=20536525 instance=ExtResource("1_1dx5u")]
+position = Vector2(613, -337.9999)
+rotation = 2.2474298
 scale = Vector2(-2.78015, 9.413322)
 
 [node name="Wall3" parent="Map" unique_id=1152264463 instance=ExtResource("1_1dx5u")]
-position = Vector2(354.99994, 43.99994)
+position = Vector2(484, -79.99999)
 scale = Vector2(-2.78015, 9.413322)
 
 [node name="Wall4" parent="Map" unique_id=1786502055 instance=ExtResource("1_1dx5u")]
@@ -44,19 +61,14 @@ position = Vector2(181.00002, -187.99998)
 rotation = -0.6653057
 scale = Vector2(-2.78015, 9.413322)
 
-[node name="Wall5" parent="Map" unique_id=1367933327 instance=ExtResource("1_1dx5u")]
-position = Vector2(-39.99997, 236.00002)
-rotation = 1.7326872
-scale = Vector2(-2.78015, 9.413322)
-
 [node name="Wall6" parent="Map" unique_id=1557856979 instance=ExtResource("1_1dx5u")]
 position = Vector2(-301.00003, 221)
 rotation = 4.720224
-scale = Vector2(3.8872144, 22.560589)
+scale = Vector2(3.8872144, 18.363537)
 
 [node name="Wall7" parent="Map" unique_id=1579398602 instance=ExtResource("1_1dx5u")]
 position = Vector2(382.00003, 176)
-rotation = 4.720224
+rotation = 5.216627
 scale = Vector2(5.7684093, 5.5655003)
 
 [node name="Wall8" parent="Map" unique_id=852232834 instance=ExtResource("1_1dx5u")]
@@ -71,9 +83,5 @@ script = ExtResource("2_qusal")
 
 [node name="Agent" parent="Agents" unique_id=1466015041 instance=ExtResource("2_e56y5")]
 position = Vector2(-475, -233)
-
-[node name="Agent2" parent="Agents" unique_id=1085861022 instance=ExtResource("2_e56y5")]
-position = Vector2(434, -245)
-rotation = 2.1055875
 
 [node name="Player" parent="." unique_id=2058021181 instance=ExtResource("1_m1xyh")]

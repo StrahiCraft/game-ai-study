@@ -5,12 +5,24 @@
 [ext_resource type="Script" uid="uid://dx38due5iuw7b" path="res://scripts/agent/states/AgentIdleState.cs" id="3_jkda1"]
 [ext_resource type="Script" uid="uid://b1xmvx25rlrt8" path="res://scripts/agent/states/AgentWanderState.cs" id="4_dnfys"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnfys"]
+size = Vector2(95, 38)
+
 [node name="Agent" type="Node2D" unique_id=1466015041 node_paths=PackedStringArray("_initialState")]
 script = ExtResource("1_uv4c6")
 _maxSpeed = 300.0
-_rotationSpeed = 60.0
+_rotationSpeed = 360.0
+_obstacleMask = 4
 _initialState = NodePath("States/Idling")
 _changeToInitialStateOnReady = true
+
+[node name="ObstacleDetector" type="Area2D" parent="." unique_id=1091195160]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleDetector" unique_id=17366573]
+position = Vector2(36.5, 0)
+shape = SubResource("RectangleShape2D_dnfys")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=944062186]
 rotation = -1.5707964
@@ -32,8 +44,8 @@ _idleState = NodePath("../Idling")
 _minWanderTime = 5.0
 _maxWanderTime = 15.0
 _fov = 60.0
-_wanderPointDistance = 300.0
-_minDistanceToTarget = 100.0
+_wanderPointDistance = 250.0
+_minDistanceToTarget = 25.0
 _agentStateManager = NodePath("../..")
 
 [node name="ChasingPlayer" type="Node" parent="States" unique_id=833223878]
@@ -41,3 +53,6 @@ _agentStateManager = NodePath("../..")
 [node name="GoingToLastPlayerPosition" type="Node" parent="States" unique_id=462520536]
 
 [node name="LookingForPlayer" type="Node" parent="States" unique_id=24411413]
+
+[connection signal="body_entered" from="ObstacleDetector" to="." method="OnObstacleDetected"]
+[connection signal="body_exited" from="ObstacleDetector" to="." method="OnObstacleStoppedBeingDetected"]

@@ -24,10 +24,10 @@ public partial class AgentWanderState : AgentState
 	{
 		RandomNumberGenerator rng = new RandomNumberGenerator();
 
-		return new Vector2(Mathf.Sin(Mathf.DegToRad(rng.RandfRange(_agentStateManager.RotationDegrees - _fov / 2,
-			_agentStateManager.RotationDegrees + _fov / 2))),
-            Mathf.Cos(Mathf.DegToRad(rng.RandfRange(_agentStateManager.RotationDegrees - _fov / 2,
-			_agentStateManager.RotationDegrees + _fov / 2)))) *
+		return new Vector2(Mathf.Sin(Mathf.DegToRad(rng.RandfRange(_agentStateManager.RotationDegrees - _fov / 2 + 90,
+			_agentStateManager.RotationDegrees + _fov / 2 + 90))),
+            Mathf.Cos(Mathf.DegToRad(rng.RandfRange(_agentStateManager.RotationDegrees - _fov / 2 + 90,
+			_agentStateManager.RotationDegrees + _fov / 2 + 90)))) *
 			_wanderPointDistance + _agentStateManager.Position;
 	}
 

@@ -1,18 +1,31 @@
+using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
+using Godot.Collections;
 
 public partial class Agent : StateManager
 {
 	[Export] private float _maxSpeed;
 	[Export] private float _rotationSpeed;
+	[Export(PropertyHint.Layers2DPhysics)] private uint _obstacleMask;
 	
 	protected Vector2 _targetPosition;
 	private Vector2 _velocity;
+
+	private List<Node2D> _detectedObstacles = new List<Node2D>();
 
     public override void _Ready()
     {
         AgentManager.Instance.AddAgent(this);
 		base._Ready();
     }
+
+    public override void _Process(double delta)
+    {
+		AvoidObstacles();
+        base._Process(delta);
+    }
+
 
 	public void SetTargetPosition(Vector2 targetPosition)
 	{
@@ -22,6 +35,38 @@ public partial class Agent : StateManager
 	public void OnPlayerSpotted()
 	{
 		// TODO change to going to last player position state
+	}
+
+	public void OnObstacleDetected(Node2D obstacle)
+	{
+		_detectedObstacles.Add(obstacle);
+	}
+
+	public void OnObstacleStoppedBeingDetected(Node2D obstacle)
+	{
+		_detectedObstacles.Remove(obstacle);
+	}
+
+	private void AvoidObstacles()
+	{
+		Vector2 avoidancePosition = Vector2.Zero;
+		foreach(Node2D obstacle in _detectedObstacles)
+		{	
+			PhysicsDirectSpaceState2D spaceState = GetWorld2D().DirectSpaceState;
+			// use global coordinates, not local to node
+			PhysicsRayQueryParameters2D query = PhysicsRayQueryParameters2D.Create(GlobalPosition, obstacle.GlobalPosition, _obstacleMask);
+			Dictionary result = spaceState.IntersectRay(query);
+
+			if(result.Count > 0)
+			{
+				avoidancePosition += (Vector2)result["position"] + (Vector2)result["normal"] * 50f;
+			}
+		}
+
+		if(_detectedObstacles.Count > 0)
+		{
+			SetTargetPosition(avoidancePosition / _detectedObstacles.Count);
+		}
 	}
 
 	public void Steer(float delta)
@@ -37,8 +82,7 @@ public partial class Agent : StateManager
 
 	public float DistanceToTarget()
 	{
-		return Mathf.Sqrt((_targetPosition.X - Position.X) * (_targetPosition.X - Position.X) +
-			(_targetPosition.Y - Position.Y) * (_targetPosition.Y - Position.Y));
+		return GlobalPosition.DistanceTo(_targetPosition);
 	}
 
 	public Vector2 GetVelocity()
