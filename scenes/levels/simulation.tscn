@@ -1,21 +1,9 @@
 [gd_scene format=3 uid="uid://b2h6n3npvpc7f"]
 
-[ext_resource type="PackedScene" uid="uid://by2mv2qowjej0" path="res://scenes/objects/agents/wanderer.tscn" id="1_m1xyh"]
-[ext_resource type="PackedScene" uid="uid://0gj7p15n4vj" path="res://scenes/objects/agents/pursuer.tscn" id="2_1dx5u"]
-[ext_resource type="PackedScene" uid="uid://dol2xkh43yi8f" path="res://scenes/objects/agents/evader.tscn" id="3_e56y5"]
+[ext_resource type="PackedScene" uid="uid://c8oobrytwe7y8" path="res://scenes/objects/agents/player/player.tscn" id="1_m1xyh"]
 
 [node name="Simulation" type="Node2D" unique_id=1252209998]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=382429803]
 
-[node name="Wanderer" parent="." unique_id=1466015041 instance=ExtResource("1_m1xyh")]
-position = Vector2(-406, -52)
-
-[node name="Pursuer" parent="." unique_id=1548938448 node_paths=PackedStringArray("_pursuitTarget") instance=ExtResource("2_1dx5u")]
-position = Vector2(327, 224)
-_pursuitTarget = NodePath("../Wanderer")
-
-[node name="Evader" parent="." unique_id=1750663509 node_paths=PackedStringArray("_evadeTarget") instance=ExtResource("3_e56y5")]
-position = Vector2(370, -257)
-_evadeTarget = NodePath("../Wanderer")
-_evasionDistance = 200.0
+[node name="Player" parent="." unique_id=2058021181 instance=ExtResource("1_m1xyh")]
