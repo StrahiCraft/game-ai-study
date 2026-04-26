@@ -5,8 +5,11 @@ using System.Collections.Generic;
 public partial class AgentManager : Node
 {
 	public Vector2 PlayerPosition { get; set; }
+	public bool PlayerSpotted { get => _agentsSpottingPlayer.Count > 0; }
 
 	private List<Agent> _agents = new List<Agent>();
+	public HashSet<Agent> _agentsSpottingPlayer = new HashSet<Agent>();
+
 
 	public static AgentManager Instance;
 
@@ -23,6 +26,16 @@ public partial class AgentManager : Node
 	public void AddAgent(Agent agent)
 	{
 		_agents.Add(agent);
+	}
+
+	public void AddAgentSpottingPlayer(Agent agent)
+	{
+		_agentsSpottingPlayer.Add(agent);
+	}
+
+	public void RemoveAgentSpottingPlayer(Agent agent)
+	{
+		_agentsSpottingPlayer.Remove(agent);
 	}
 
 	public void OnPlayerSpotted()

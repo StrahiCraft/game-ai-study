@@ -7,12 +7,18 @@ using System.Net.Http.Headers;
 public partial class AgentIdleState : AgentState
 {
 	[Export] private Node _wanderState;
+    [Export] private Node _chasePlayerState;
 
 	[ExportCategory("Idle time")]
 	[Export] private float _minIdleTime;
 	[Export] private float _maxIdleTime;
 
 	private float _idleTime;
+
+    public override void OnPlayerSpotted()
+    {
+        _agentStateManager.ChangeState(_chasePlayerState);
+    }
 
     public override void OnStateEnter()
     {

@@ -3,6 +3,7 @@ using Godot;
 public partial class AgentWanderState : AgentState
 {
 	[Export] private Node _idleState;
+	[Export] private Node _chasePlayerState;
 
 	[ExportCategory("Wander time settings")]
 	[Export] private float _minWanderTime;
@@ -53,6 +54,7 @@ public partial class AgentWanderState : AgentState
 		}
 
 		_wanderTime -= delta;
+		_agentStateManager.AvoidObstacles();
 		_agentStateManager.Steer(delta);
 
         if(_agentStateManager.DistanceToTarget() <= _minDistanceToTarget)
@@ -61,4 +63,8 @@ public partial class AgentWanderState : AgentState
 		}
     }
 
+    public override void OnPlayerSpotted()
+    {
+        _agentStateManager.ChangeState(_chasePlayerState);
+    }
 }

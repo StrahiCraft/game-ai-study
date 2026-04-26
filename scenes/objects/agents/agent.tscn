@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dgxbkkb54qqup" path="res://textures/RedArrow.png" id="2_jkda1"]
 [ext_resource type="Script" uid="uid://dx38due5iuw7b" path="res://scripts/agent/states/AgentIdleState.cs" id="3_jkda1"]
 [ext_resource type="Script" uid="uid://b1xmvx25rlrt8" path="res://scripts/agent/states/AgentWanderState.cs" id="4_dnfys"]
+[ext_resource type="Script" uid="uid://bef53b84fsj8s" path="res://scripts/agent/states/AgentChasingPlayerState.cs" id="5_k8h2k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dnfys"]
+radius = 176.01137
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnfys"]
 size = Vector2(95, 38)
@@ -15,6 +19,13 @@ _rotationSpeed = 360.0
 _obstacleMask = 4
 _initialState = NodePath("States/Idling")
 _changeToInitialStateOnReady = true
+
+[node name="PlayerDetector" type="Area2D" parent="." unique_id=200579835]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=393557047]
+shape = SubResource("CircleShape2D_dnfys")
+debug_color = Color(0.9607843, 0, 0, 0.41960785)
 
 [node name="ObstacleDetector" type="Area2D" parent="." unique_id=1091195160]
 collision_layer = 2
@@ -31,16 +42,18 @@ texture = ExtResource("2_jkda1")
 
 [node name="States" type="Node" parent="." unique_id=2101367835]
 
-[node name="Idling" type="Node" parent="States" unique_id=758127014 node_paths=PackedStringArray("_wanderState", "_agentStateManager")]
+[node name="Idling" type="Node" parent="States" unique_id=758127014 node_paths=PackedStringArray("_wanderState", "_chasePlayerState", "_agentStateManager")]
 script = ExtResource("3_jkda1")
 _wanderState = NodePath("../Wandering")
+_chasePlayerState = NodePath("../ChasingPlayer")
 _minIdleTime = 0.5
 _maxIdleTime = 1.5
 _agentStateManager = NodePath("../..")
 
-[node name="Wandering" type="Node" parent="States" unique_id=2051361503 node_paths=PackedStringArray("_idleState", "_agentStateManager")]
+[node name="Wandering" type="Node" parent="States" unique_id=2051361503 node_paths=PackedStringArray("_idleState", "_chasePlayerState", "_agentStateManager")]
 script = ExtResource("4_dnfys")
 _idleState = NodePath("../Idling")
+_chasePlayerState = NodePath("../ChasingPlayer")
 _minWanderTime = 5.0
 _maxWanderTime = 15.0
 _fov = 60.0
@@ -48,11 +61,13 @@ _wanderPointDistance = 250.0
 _minDistanceToTarget = 25.0
 _agentStateManager = NodePath("../..")
 
-[node name="ChasingPlayer" type="Node" parent="States" unique_id=833223878]
+[node name="ChasingPlayer" type="Node" parent="States" unique_id=833223878 node_paths=PackedStringArray("_wanderState", "_agentStateManager")]
+script = ExtResource("5_k8h2k")
+_minDistanceToTarget = 50.0
+_wanderState = NodePath("../Wandering")
+_agentStateManager = NodePath("../..")
 
-[node name="GoingToLastPlayerPosition" type="Node" parent="States" unique_id=462520536]
-
-[node name="LookingForPlayer" type="Node" parent="States" unique_id=24411413]
-
+[connection signal="body_entered" from="PlayerDetector" to="." method="OnPlayerDetected"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="OnPlayerStoppedBeingDetected"]
 [connection signal="body_entered" from="ObstacleDetector" to="." method="OnObstacleDetected"]
 [connection signal="body_exited" from="ObstacleDetector" to="." method="OnObstacleStoppedBeingDetected"]

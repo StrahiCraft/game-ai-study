@@ -8,4 +8,5 @@ public abstract partial class AgentState : Node, IState
     public abstract void OnStateEnter();
     public abstract void OnStateExit();
     public abstract void OnStateUpdate(float delta);
+    public abstract void OnPlayerSpotted();
 }

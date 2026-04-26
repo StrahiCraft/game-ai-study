@@ -62,8 +62,8 @@ rotation = -0.6653057
 scale = Vector2(-2.78015, 9.413322)
 
 [node name="Wall6" parent="Map" unique_id=1557856979 instance=ExtResource("1_1dx5u")]
-position = Vector2(-301.00003, 221)
-rotation = 4.720224
+position = Vector2(-290.00003, 171)
+rotation = 4.8811097
 scale = Vector2(3.8872144, 18.363537)
 
 [node name="Wall7" parent="Map" unique_id=1579398602 instance=ExtResource("1_1dx5u")]
@@ -72,8 +72,8 @@ rotation = 5.216627
 scale = Vector2(5.7684093, 5.5655003)
 
 [node name="Wall8" parent="Map" unique_id=852232834 instance=ExtResource("1_1dx5u")]
-position = Vector2(140, 87)
-rotation = 4.720224
+position = Vector2(96, 69)
+rotation = 4.256531
 scale = Vector2(5.7684093, 5.5655003)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=382429803]
@@ -83,5 +83,13 @@ script = ExtResource("2_qusal")
 
 [node name="Agent" parent="Agents" unique_id=1466015041 instance=ExtResource("2_e56y5")]
 position = Vector2(-475, -233)
+
+[node name="Agent2" parent="Agents" unique_id=180689941 instance=ExtResource("2_e56y5")]
+position = Vector2(428, -265)
+rotation = 2.0956943
+
+[node name="Agent3" parent="Agents" unique_id=1306533863 instance=ExtResource("2_e56y5")]
+position = Vector2(-44.99997, 275)
+rotation = 0.12602973
 
 [node name="Player" parent="." unique_id=2058021181 instance=ExtResource("1_m1xyh")]
