@@ -27,9 +27,17 @@ public partial class Agent : StateManager
         base._Process(delta);
     }
 
+	private void SetObstacleAvoidanceTarget(Vector2 targetPosition)
+	{
+		_targetPosition = targetPosition;
+	}
 
 	public void SetTargetPosition(Vector2 targetPosition)
 	{
+		if(_detectedObstacles.Count > 0)
+		{
+			return;
+		}
 		_targetPosition = targetPosition;
 	}
 
@@ -77,7 +85,7 @@ public partial class Agent : StateManager
 
 		if(_detectedObstacles.Count > 0)
 		{
-			SetTargetPosition(avoidancePosition / _detectedObstacles.Count);
+			SetObstacleAvoidanceTarget(avoidancePosition / _detectedObstacles.Count);
 		}
 	}
 
