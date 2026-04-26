@@ -1,10 +1,7 @@
 using Godot;
-using System;
-using System.Diagnostics;
 
-public partial class Agent : Node2D
+public partial class Agent : StateManager
 {
-	[Export] protected bool _reverseDesieredVelocity;
 	[Export] private float _maxSpeed;
 	[Export] private float _rotationSpeed;
 	
@@ -13,75 +10,35 @@ public partial class Agent : Node2D
 
     public override void _Ready()
     {
-        _velocity = Vector2.Up;
+        AgentManager.Instance.AddAgent(this);
+		base._Ready();
     }
 
-	public override void _Process(double delta)
+	public void SetTargetPosition(Vector2 targetPosition)
 	{
-		Vector2 desieredVelocity;
+		_targetPosition = targetPosition;
+	}
 
-		if (_reverseDesieredVelocity)
-		{
-			desieredVelocity = (Position - _targetPosition).Normalized();
-		}
-		else
-		{
-			desieredVelocity = (_targetPosition - Position).Normalized();
-		}
+	public void OnPlayerSpotted()
+	{
+		// TODO change to going to last player position state
+	}
+
+	public void Steer(float delta)
+	{
+		Vector2 desieredVelocity = (_targetPosition - Position).Normalized();
 
 		Vector2 steeringVelocity = desieredVelocity - _velocity;
-
-		_velocity += steeringVelocity * Mathf.DegToRad(_rotationSpeed) * (float)delta;
+		_velocity += steeringVelocity * Mathf.DegToRad(_rotationSpeed) * delta;
 
 		LookAt(Position + _velocity.Normalized());
-		Position += _velocity * (float)delta * _maxSpeed;
-		WrapPosition();
-	}
-
-	private void WrapPosition()
-	{
-		Vector2 wrapedPosition = Position;
-
-		if(Position.X < -GetWindow().Size.X / 2)
-		{
-			wrapedPosition.X = GetWindow().Size.X / 2;
-		}
-		if(Position.Y < -GetWindow().Size.Y / 2)
-		{
-			wrapedPosition.Y = GetWindow().Size.Y / 2;
-		}
-
-		if(Position.X > GetWindow().Size.X / 2)
-		{
-			wrapedPosition.X = -GetWindow().Size.X / 2;
-		}
-		if(Position.Y > GetWindow().Size.Y / 2)
-		{
-			wrapedPosition.Y = -GetWindow().Size.Y / 2;
-		}
-
-		if(wrapedPosition != Position)
-		{
-			OnPositionWraped();
-		}
-
-		Position = wrapedPosition;
-	}
-
-	public virtual void OnPositionWraped()
-	{
-		
+		Position += _velocity * delta * _maxSpeed;
 	}
 
 	public float DistanceToTarget()
 	{
 		return Mathf.Sqrt((_targetPosition.X - Position.X) * (_targetPosition.X - Position.X) +
 			(_targetPosition.Y - Position.Y) * (_targetPosition.Y - Position.Y));
-	}
-
-	public void SetTargetPosition(Vector2 target)
-	{
-		_targetPosition = target;
 	}
 
 	public Vector2 GetVelocity()
@@ -93,5 +50,4 @@ public partial class Agent : Node2D
 	{
 		return _maxSpeed;
 	}
-
 }

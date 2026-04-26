@@ -2,13 +2,42 @@
 
 [ext_resource type="Script" uid="uid://d1v8y0831pwgs" path="res://scripts/agent/Agent.cs" id="1_uv4c6"]
 [ext_resource type="Texture2D" uid="uid://dgxbkkb54qqup" path="res://textures/RedArrow.png" id="2_jkda1"]
+[ext_resource type="Script" uid="uid://dx38due5iuw7b" path="res://scripts/agent/states/AgentIdleState.cs" id="3_jkda1"]
+[ext_resource type="Script" uid="uid://b1xmvx25rlrt8" path="res://scripts/agent/states/AgentWanderState.cs" id="4_dnfys"]
 
-[node name="Agent" type="Node2D" unique_id=1466015041]
+[node name="Agent" type="Node2D" unique_id=1466015041 node_paths=PackedStringArray("_initialState")]
 script = ExtResource("1_uv4c6")
 _maxSpeed = 300.0
 _rotationSpeed = 60.0
+_initialState = NodePath("States/Idling")
+_changeToInitialStateOnReady = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=944062186]
 rotation = -1.5707964
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_jkda1")
+
+[node name="States" type="Node" parent="." unique_id=2101367835]
+
+[node name="Idling" type="Node" parent="States" unique_id=758127014 node_paths=PackedStringArray("_wanderState", "_agentStateManager")]
+script = ExtResource("3_jkda1")
+_wanderState = NodePath("../Wandering")
+_minIdleTime = 0.5
+_maxIdleTime = 1.5
+_agentStateManager = NodePath("../..")
+
+[node name="Wandering" type="Node" parent="States" unique_id=2051361503 node_paths=PackedStringArray("_idleState", "_agentStateManager")]
+script = ExtResource("4_dnfys")
+_idleState = NodePath("../Idling")
+_minWanderTime = 5.0
+_maxWanderTime = 15.0
+_fov = 60.0
+_wanderPointDistance = 300.0
+_minDistanceToTarget = 100.0
+_agentStateManager = NodePath("../..")
+
+[node name="ChasingPlayer" type="Node" parent="States" unique_id=833223878]
+
+[node name="GoingToLastPlayerPosition" type="Node" parent="States" unique_id=462520536]
+
+[node name="LookingForPlayer" type="Node" parent="States" unique_id=24411413]

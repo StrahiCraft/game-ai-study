@@ -1,9 +1,9 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
-public partial class StateManager : Node
+public partial class StateManager : Node2D
 {
-	[ExportGroup("Initial state")]
 	[Export] protected Node _initialState;
 	[Export] private bool _changeToInitialStateOnReady;
 
@@ -38,6 +38,7 @@ public partial class StateManager : Node
 	{
 		if(newState is IState)
 		{
+			Debug.Print("Changing to " + newState.Name);
 			ChangeState((IState)newState);
 		}
 	}
